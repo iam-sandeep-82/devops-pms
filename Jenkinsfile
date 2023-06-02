@@ -21,7 +21,7 @@ pipeline {
         stage('Local Deploy Test') {
             steps {
                 echo "PATIENT-APP-LOCAL-TEST RUNNING ON PORT 80"
-                sh 'docker network create netx'
+                // sh 'docker network create netx'
                 sh 'docker run -d -p 80:8080 --network netx patient-application:beta'
             }
         }
