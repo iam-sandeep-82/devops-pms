@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo "PATIENT-APP-LOCAL-TEST RUNNING ON PORT 80"
                 sh 'docker network create alex'
-                sh 'docker run -d -p 80:8080 --network alex --name patient-app patient-application:beta'
+                sh 'docker run -d -p 80:8080 --network alex patient-application:beta'
             }
         }
   
