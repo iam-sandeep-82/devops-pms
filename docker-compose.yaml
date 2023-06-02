@@ -1,0 +1,47 @@
+version: "3"
+services:
+ #patient-app:
+  #image: "patient_app:beta-$BUILD_TAG"
+  #build:
+   #dockerfile: Patient-App-Dockerfile
+   #context: .
+  #ports:
+   #- "8080:8080"
+  #environment:
+   #- "service_app_url=service-app"
+   #- "service_app_port=8000"
+  #networks:
+   #- alex
+  #depends_on:
+   #- services-app
+
+ services-app:
+  container_name: "service-app"
+  image: "service_app:beta-$BUILD_TAG"
+  build:
+   dockerfile: Service-App-Dockerfile
+   context: .
+  ports:
+   - "8000:8000"
+  networks:
+   - alex
+  depends_on:
+   - mysql-server
+
+ mysql-server:
+    container_name: mysql-server
+    image: mysql
+    networks:
+      - alex
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=servicedb
+    #volumes:
+     # - mysql-data:/var/lib/mysql
+
+networks:
+  alex:
+#volumes:
+  #mysql-data:
+
+
