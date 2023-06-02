@@ -20,7 +20,9 @@ pipeline {
         }
         stage('Local Deploy Test') {
             steps {
-                sh 'docker run -d -p 8080:8080 --network alex --name patient-app patient-application:beta'
+                echo "PATIENT-APP-LOCAL-TEST RUNNING ON PORT 80"
+                sh 'docker network create alex'
+                sh 'docker run -d -p 80:8080 --network alex --name patient-app patient-application:beta'
             }
         }
   
